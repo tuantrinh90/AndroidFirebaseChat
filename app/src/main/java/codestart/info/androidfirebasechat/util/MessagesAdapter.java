@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.List;
 
@@ -27,11 +25,8 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
     private List<ChatMessage> mMessagesList;
     private Context mContext;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
     public class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+
         public TextView messageTextView;
         public View layout;
 
@@ -43,21 +38,6 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
         }
     }
 
-    public class ViewHolder2 extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        public TextView messageTextView;
-
-        public View layout;
-
-        public ViewHolder2(View v) {
-            super(v);
-            layout = v;
-            messageTextView = (TextView) v.findViewById(R.id.chatMsgTextView);
-
-        }
-    }
-
-
     public void add(int position, ChatMessage message) {
         mMessagesList.add(position, message);
         notifyItemInserted(position);
@@ -68,7 +48,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
         notifyItemRemoved(position);
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+
     public MessagesAdapter(List<ChatMessage> myDataset, Context context) {
         mMessagesList = myDataset;
         mContext = context;
@@ -85,7 +65,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
     }
 
 
-    // Create new views (invoked by the layout manager)
+
     @Override
     public MessagesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                          int viewType) {
@@ -95,21 +75,19 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.ViewHo
         } else if (viewType == ITEM_TYPE_RECEIVED) {
             v = LayoutInflater.from(mContext).inflate(R.layout.received_msg_row, null);
         }
-        return new ViewHolder(v); // view holder for header items
+        return new ViewHolder(v);
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
+
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+
         ChatMessage msg = mMessagesList.get(position);
         holder.messageTextView.setText(msg.getMessage());
 
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mMessagesList.size();

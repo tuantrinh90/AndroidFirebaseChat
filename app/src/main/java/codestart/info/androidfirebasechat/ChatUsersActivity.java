@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,6 +26,7 @@ import codestart.info.androidfirebasechat.util.UsersAdapter;
 
 public class ChatUsersActivity extends AppCompatActivity {
 
+    String TAG = ChatUsersActivity.class.getCanonicalName();
     private FirebaseAuth mAuth;
     private DatabaseReference mUsersDBRef;
     private RecyclerView mRecyclerView;

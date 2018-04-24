@@ -71,7 +71,6 @@ public class ChatMessagesActivity extends AppCompatActivity {
                 String message = mMessageEditText.getText().toString();
                 String senderId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
                 if(message.isEmpty()){
                     Toast.makeText(ChatMessagesActivity.this, "You must enter a message", Toast.LENGTH_SHORT).show();
                 }else {
